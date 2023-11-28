@@ -1,0 +1,74 @@
+{
+    "tests": [
+      {
+        "name": "Adding records",
+        "setup": "",
+        "run": "make clean && make test_add_record",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "Getting records",
+        "setup": "",
+        "run": "make clean && make test_get_records",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "Generate report",
+        "setup": "",
+        "run": "make clean && make test_get_report",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "Write records",
+        "setup": "",
+        "run": "make clean && make test_write_to_file",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "Read records",
+        "setup": "",
+        "run": "make clean && make test_load_from_file",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "End to end test",
+        "setup": "",
+        "run": "make clean && make test",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 10
+      },
+      {
+        "name": "Code readability",
+        "setup": "",
+        "run": "make clean && make stylecheck && make formatcheck",
+        "input": "",
+        "output": "",
+        "comparison": "exact",
+        "timeout": 10,
+        "points": 10
+      }
+    ]
+  }
