@@ -1,9 +1,8 @@
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Alejandro Fonseca 
+// CPSC 121L-06
+// 11-30-23
+// gfon@csu.fullerton.edu 
+// alejandro-garf
 
 #include "food_wastage_report.h"
 

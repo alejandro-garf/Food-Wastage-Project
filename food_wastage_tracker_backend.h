@@ -50,6 +50,7 @@ class FoodWastageTrackerBackend {
   // format.
   const std::string &food_wastage_records_filepath_;
   // A top level class object to track the food wastage.
+  FoodWastageTracker food_wastage_tracker_;
   // TODO: Add a FoodWastageTracker object as a member here. Make sure you stick
   // to the Google's style guide while naming your variable.
 };

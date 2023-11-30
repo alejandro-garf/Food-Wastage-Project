@@ -1,12 +1,11 @@
 #ifndef FOOD_WASTAGE_REPORT_H_
 #define FOOD_WASTAGE_REPORT_H_
 
-// Please fill in below.
-// <Your name>
-// <Your section number> (e.g. CPSC 121L-01)
-// <Date>
-// <Your csu.fullerton.edu email>
-// <Your GitHub username>
+// Alejandro Fonseca 
+// CPSC 121L-06
+// 11-30-23
+// gfon@csu.fullerton.edu 
+// alejandro-garf
 
 class FoodWastageReport {
   // ======================= YOUR CODE HERE =======================
