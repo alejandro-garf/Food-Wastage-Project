@@ -1,10 +1,10 @@
 #ifndef FOOD_WASTAGE_REPORT_H_
 #define FOOD_WASTAGE_REPORT_H_
 
-// Alejandro Fonseca 
+// Alejandro Fonseca
 // CPSC 121L-06
 // 11-30-23
-// gfon@csu.fullerton.edu 
+// gfon@csu.fullerton.edu
 // alejandro-garf
 
 class FoodWastageReport {

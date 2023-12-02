@@ -1,7 +1,7 @@
-// Alejandro Fonseca 
+// Alejandro Fonseca
 // CPSC 121L-06
 // 11-30-23
-// gfon@csu.fullerton.edu 
+// gfon@csu.fullerton.edu
 // alejandro-garf
 
 #include "food_wastage_report.h"
