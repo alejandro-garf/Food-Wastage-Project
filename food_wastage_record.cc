@@ -54,4 +54,3 @@ bool FoodWastageRecord::Equals(const FoodWastageRecord& other) const {
          disposal_mechanism_ == other.disposal_mechanism_ &&
          cost_ == other.cost_;
 }
-
