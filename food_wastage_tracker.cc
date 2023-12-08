@@ -45,3 +45,8 @@ bool FoodWastageTracker::RemoveRecord(FoodWastageRecord record) {
 const std::vector<FoodWastageRecord>& FoodWastageTracker::GetRecords() const {
   return records_;
 }
+
+FoodWastageReport FoodWastageTracker::GenerateReport() const {
+  FoodWastageReport report(records_);
+  return report;
+}

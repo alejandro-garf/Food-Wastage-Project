@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "food_wastage_record.h"
+#include "food_wastage_report.h"
 
 // Alejandro Fonseca
 // CPSC 121L-06
@@ -26,6 +27,7 @@ class FoodWastageTracker {
   bool AddRecord(FoodWastageRecord record);
   bool RemoveRecord(FoodWastageRecord record);
   const std::vector<FoodWastageRecord>& GetRecords() const;
+  FoodWastageReport GenerateReport() const;
 
  private:
   std::vector<FoodWastageRecord> records_;
