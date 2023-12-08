@@ -18,49 +18,47 @@ void SerializeFoodWastageRecordToJSON(
   writer->StartObject();
 
   writer->String("date_");  // DO NOT MODIFY
-  std::string date;
-  // TODO 1. Use the accessor/getter function for date from the
-  // FoodWastageRecord class object to get the date and store it in the date
-  // string declared above.
+  const std::string &date = record.GetDate();
   writer->String(date.c_str());
 
   writer->String("meal_");  // DO NOT MODIFY
-  std::string meal;
+  
   // TODO 2. Use the accessor/getter function for meal from the
   // FoodWastageRecord class object to get the meal and store it in the meal
   // string declared above.
+  const std::string &meal = record.GetMeal();
   writer->String(meal.c_str());
 
   writer->String("food_name_");  // DO NOT MODIFY
-  std::string food_name;
   // TODO 3. Use the accessor/getter function for food name from the
   // FoodWastageRecord class object to get the food name and store it in the
   // food_name string declared above.
+  const std::string &food_name = record.GetFoodName();
   writer->String(food_name.c_str());
 
   writer->String("qty_in_oz_");  // DO NOT MODIFY
-  double quantity;
+  double quantity = record.GetQuantityOz();
   // TODO 4. Use the accessor/getter function for quantity from the
   // FoodWastageRecord class object to get the quantity and store it in the
   // quantity variable declared above.
   writer->Double(quantity);
 
   writer->String("wastage_reason_");  // DO NOT MODIFY
-  std::string wastage_reason;
+  const std::string &wastage_reason = record.GetWastageReason();
   // TODO 5. Use the accessor/getter function for wastage reason from the
   // FoodWastageRecord class object to get the wastage reason and store it in
   // the wastage_reason string declared above.
   writer->String(wastage_reason.c_str());
 
   writer->String("disposal_mechanism_");  // DO NOT MODIFY
-  std::string disposal_mechanism;
+  const std::string &disposal_mechanism = record.GetDisposalMechanism();
   // TODO 6. Use the accessor/getter function for disposal mechanism from the
   // FoodWastageRecord class object to get the disposal mechanism and store it
   // in the disposal_mechanism string declared above.
   writer->String(disposal_mechanism.c_str());
 
   writer->String("cost_");  // DO NOT MODIFY
-  double cost;
+  double cost = record.GetCost();
   // TODO 7. Use the accessor/getter function for cost from the
   // FoodWastageRecord class object to get the cost and store it in the cost
   // variable declared above.
@@ -120,6 +118,28 @@ FoodWastageRecord DeserializeFoodWastageRecordFromJSON(
    *  object as follows: `json_obj["cost_"].GetDouble()`.
    *  Use that as an function  argument for the mutator that you'll call.
    */
+  std::string date = std::string(json_obj["date_"].GetString());
+  record.SetDate(std::move(date));
+
+  std::string meal = std::string(json_obj["meal_"].GetString());
+  record.SetMeal(std::move(meal));
+
+  std::string food_name = std::string(json_obj["food_name_"].GetString());
+  record.SetFoodName(std::move(food_name));
+
+  double quantity_oz = json_obj["qty_in_oz_"].GetDouble();
+  record.SetQuantityOz(quantity_oz);
+
+  std::string wastage_reason =
+      std::string(json_obj["wastage_reason_"].GetString());
+  record.SetWastageReason(std::move(wastage_reason));
+
+  std::string disposal_mechanism =
+      std::string(json_obj["disposal_mechanism_"].GetString());
+  record.SetDisposalMechanism(std::move(disposal_mechanism));
+
+  double cost = json_obj["cost_"].GetDouble();
+  record.SetCost(cost);
   return record;
 }
 
@@ -181,41 +201,45 @@ crow::json::wvalue FoodWastageReportToCrowJSON(
     const FoodWastageReport &report) {
   crow::json::wvalue report_json({});
 
-  std::vector<std::string> most_common_disposal_mechanisms{};
+ 
   // TODO 1: Call the member function of FoodWastageReport class that returns
   // all
+  std::vector<std::string> most_common_disposal_mechanisms =
+      report.CommonMechanisms();
 
   // the most common disposal mechanisms as a vector of strings. Store the
   // result in the vector declared above.
   report_json["most_common_disposal_mechanism_"] =
       most_common_disposal_mechanisms;
 
-  std::vector<std::string> most_commonly_wasted_foods{};
+  std::vector<std::string> most_commonly_wasted_foods = report.CommonFoods();
   // TODO 2: Call the member function of FoodWastageReport class that returns
   // all the most commonly wasted foods as a vector of strings. Store the result
   // in the vector declared above.
   report_json["most_commonly_wasted_food_"] = most_commonly_wasted_foods;
 
-  std::vector<std::string> most_common_wastage_reasons{};
+std::vector<std::string> most_common_wastage_reasons = report.CommonReasons();
   // TODO 3: Call the member function of FoodWastageReport class that returns
   // all the most commonwastage reasons as a vector of strings. Store the result
   // in the vector declared above.
   report_json["most_common_wastage_reason_"] = most_common_wastage_reasons;
 
-  std::vector<std::string> most_costly_waste_producing_meals{};
+    std::vector<std::string> most_costly_waste_producing_meals =
+      report.CostlyMeals();
   // TODO 4: Call the member function of FoodWastageReport class that returns
   // all the most costly waste producing meals as a vector of strings. Store the
   // result in the vector declared above.
   report_json["most_waste_producing_meal_"] = most_costly_waste_producing_meals;
 
-  std::vector<std::string> suggested_strategies_to_reduce_waste{};
+   std::vector<std::string> suggested_strategies_to_reduce_waste =
+      report.SuggestedStrategies();
   // TODO 5: Call the member function of FoodWastageReport class that returns
   // all the suggested strategies as a vector of strings. Store the result in
   // the vector declared above.
   report_json["suggested_strategies_to_reduce_waste_"] =
       suggested_strategies_to_reduce_waste;
 
-  double total_cost_of_wastage = -9999.0;
+  double total_cost_of_wastage = report.TotalCost();
   // TODO 6: Call the member function of FoodWastageReport class that returns
   // the total cost of wastage as a double. Store the result in the double
   // declared.
@@ -307,6 +331,7 @@ bool FoodWastageTrackerBackend::LoadRecordsFromJSONFile() {
     // TODO: Call the member function in the FoodWastageTracker class, on the
     // member object that you added in food_wastage_tracker.h, that
     // adds a `record`.
+    food_wastage_tracker_.AddRecord(std::move(record));
   }
 
   records_file.close();
@@ -318,13 +343,17 @@ bool FoodWastageTrackerBackend::WriteRecordsToJSONFile() const {
   rapidjson::StringBuffer ss;
   rapidjson::Writer<rapidjson::StringBuffer> writer(ss);
   writer.StartArray();
-  std::vector<FoodWastageRecord> records;
+ 
   // TODO: Call the member function in the FoodWastageTracker class, on the
   // member object that you added in food_wastage_tracker.h, that returns all
   // the FoodWastageRecord objects. Store the returned records in the vector
   // declared above. Also change the data type of the records vector to `const
   // std::vector<FoodWastageRecord>&`.
   for (FoodWastageRecord record : records) {
+     const std::vector<FoodWastageRecord> &records =
+      food_wastage_tracker_.GetRecords();
+
+  for (const FoodWastageRecord &record : records) {
     SerializeFoodWastageRecordToJSON(record, &writer);
   }
   writer.EndArray();
@@ -382,7 +411,7 @@ crow::json::wvalue FoodWastageTrackerBackend::GetRecords() const {
 }
 
 crow::json::wvalue FoodWastageTrackerBackend::GetFoodWastageReport() const {
-  FoodWastageReport generated_report;
+  FoodWastageReport generated_report = food_wastage_tracker_.GenerateReport();
   // TODO: Call the member function in the FoodWastageTracker class, on the
   // member object that you added in food_wastage_tracker.h, that generates a
   // FoodWastageReport object using all the FoodWastageRecords and returns it.
