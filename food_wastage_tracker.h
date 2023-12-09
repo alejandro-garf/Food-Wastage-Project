@@ -12,7 +12,6 @@
 // gfon@csu.fullerton.edu
 // alejandro-garf
 
-
 class FoodWastageTracker {
  public:
   FoodWastageTracker();

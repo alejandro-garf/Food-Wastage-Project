@@ -10,7 +10,6 @@
 #include "server_utils/rapidjson/stringbuffer.h"  // wrapper of C stream for prettywriter as output
 #include "server_utils/rapidjson/writer.h"
 
-
 void SerializeFoodWastageRecordToJSON(
     const FoodWastageRecord &record,
     rapidjson::Writer<rapidjson::StringBuffer> *writer) {
@@ -21,7 +20,6 @@ void SerializeFoodWastageRecordToJSON(
   writer->String(date.c_str());
 
   writer->String("meal_");  // DO NOT MODIFY
-
 
   const std::string &meal = record.GetMeal();
   writer->String(meal.c_str());
@@ -54,11 +52,9 @@ void SerializeFoodWastageRecordToJSON(
   writer->EndObject();
 }
 
-
 FoodWastageRecord DeserializeFoodWastageRecordFromJSON(
     const rapidjson::Value &json_obj) {
   FoodWastageRecord record;
-
 
   std::string date = std::string(json_obj["date_"].GetString());
   record.SetDate(std::move(date));
@@ -84,7 +80,6 @@ FoodWastageRecord DeserializeFoodWastageRecordFromJSON(
   record.SetCost(cost);
   return record;
 }
-
 
 crow::json::wvalue FoodWastageRecordToCrowJSON(
     const FoodWastageRecord &record) {
@@ -122,14 +117,12 @@ crow::json::wvalue FoodWastageRecordToCrowJSON(
   return record_json;
 }
 
-
 crow::json::wvalue FoodWastageReportToCrowJSON(
     const FoodWastageReport &report) {
   crow::json::wvalue report_json({});
 
   std::vector<std::string> most_common_disposal_mechanisms =
       report.CommonMechanisms();
-
 
   report_json["most_common_disposal_mechanism_"] =
       most_common_disposal_mechanisms;
@@ -160,36 +153,28 @@ crow::json::wvalue FoodWastageReportToCrowJSON(
   return report_json;
 }
 
-
 FoodWastageRecord QueryStringToFoodWastageRecord(
     const crow::query_string &query_string) {
   FoodWastageRecord record;
 
-
   std::string date = query_string.get("date");
   record.SetDate(date);
-
 
   std::string meal = query_string.get("meal");
   record.SetMeal(meal);
 
-
   std::string food_name = query_string.get("food_name");
   record.SetFoodName(food_name);
-
 
   double quantity = std::stod(std::string(query_string.get("qty_in_oz")));
   record.SetQuantityOz(quantity);
 
-
   std::string wastage_reason = query_string.get("wastage_reason");
   record.SetWastageReason(wastage_reason);
-
 
   std::string disposal_mechanism = query_string.get("disposal_mechanism");
   record.SetDisposalMechanism(disposal_mechanism);
 
- 
   double cost = std::stod(std::string(query_string.get("cost")));
   record.SetCost(cost);
 
@@ -238,7 +223,6 @@ bool FoodWastageTrackerBackend::WriteRecordsToJSONFile() const {
   rapidjson::StringBuffer ss;
   rapidjson::Writer<rapidjson::StringBuffer> writer(ss);
   writer.StartArray();
-
 
   for (FoodWastageRecord record : records) {
     const std::vector<FoodWastageRecord> &records =

@@ -6,7 +6,6 @@
 
 #include "food_wastage_tracker.h"
 
-
 FoodWastageTracker::FoodWastageTracker() {}
 
 bool FoodWastageTracker::AddRecord(FoodWastageRecord record) {

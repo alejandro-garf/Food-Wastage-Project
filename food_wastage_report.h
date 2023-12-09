@@ -13,8 +13,6 @@
 #include "food_wastage_record.h"
 
 class FoodWastageReport {
-
-
  public:
   FoodWastageReport(const std::vector<FoodWastageRecord>& records);
   const std::vector<std::string>& CommonFoods() const;

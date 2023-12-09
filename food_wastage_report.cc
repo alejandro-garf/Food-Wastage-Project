@@ -6,8 +6,6 @@
 
 #include "food_wastage_report.h"
 
-
-
 #include <map>
 #include <string>
 

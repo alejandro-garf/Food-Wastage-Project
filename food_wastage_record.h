@@ -9,7 +9,6 @@
 // gfon@csu.fullerton.edu
 // alejandro-garf
 
-
 class FoodWastageRecord {
  public:
   FoodWastageRecord();
