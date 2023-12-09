@@ -1,16 +1,15 @@
 #ifndef FOOD_WASTAGE_REPORT_H_
 #define FOOD_WASTAGE_REPORT_H_
+#include <set>
+#include <vector>
+
+#include "food_wastage_record.h"
 
 // Alejandro Fonseca
 // CPSC 121L-06
 // 11-30-23
 // gfon@csu.fullerton.edu
 // alejandro-garf
-
-#include <set>
-#include <vector>
-
-#include "food_wastage_record.h"
 
 class FoodWastageReport {
  public:
